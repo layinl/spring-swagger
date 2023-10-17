@@ -8,6 +8,7 @@ public class SpringSwaggerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSwaggerApplication.class, args);
+
 	}
 
 }
