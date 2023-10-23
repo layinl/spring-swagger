@@ -1,5 +1,7 @@
 package me.dio.webapi.repository;
 
+import me.dio.webapi.handler.BusinessException;
+import me.dio.webapi.handler.RequiredFieldException;
 import me.dio.webapi.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,13 +14,17 @@ import java.util.List;
 public class UserRepo {
 
 	public void save(User user){
-		System.out.println("SAVE - Receiving user at the repository layer");
+		if(user.getLogin() == null)
+			throw new RequiredFieldException("login");
+		if(user.getPassword() == null)
+			throw new RequiredFieldException("password");
+		if(user.getId() == null)
+			System.out.println("SAVE - Receiving user at the repository layer");
+		else
+			System.out.println("UPDATE - Receiving user at the repository layer");
 		System.out.println(user);
 	}
-	public void update(User user){
-		System.out.println("UPDATE - Receiving user at the repository layer");
-		System.out.println(user);
-	}
+
 	public void remove(Integer id){
 		System.out.printf("DELETE/id - Receiving user with id %d at the repository layer", id);
 		System.out.println(id);

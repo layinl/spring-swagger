@@ -30,7 +30,11 @@ public class UserController {
 
 	@PostMapping("/users")
 	public void postUser(@RequestBody User user) {
-		userRepo.save(user);
+		userRepo.save(new User(null, user.getLogin(), user.getPassword()));
 	}
 
+	@PutMapping("/users/{id}")
+	public void putUser(@RequestBody User user) {
+		userRepo.save(user);
+	}
 }
